@@ -18,7 +18,7 @@ public:
         length = len;
         width = wid;
     }
-    double area() {
+    double area() override {
         return length * width;
     }
 };
@@ -27,17 +27,21 @@ public:
     Circle (double rad) {
         radius = rad;
     }
-    double area () {
+    double area () override {
         return pi * (radius * radius);
     }
 };
 int main() {
     // Initializing Objects from Classes Rectangle and Circle
-   Shape * shapes[2] = {new Rectangle(5,10), new Circle(5)};
+   Shape *shapes[2] = {new Rectangle(5,10), new Circle(5)};
    Shape shape;
     // Calling the Function area from the class Shape
+    cout << "Address of Rectangle: " << shapes[0] << endl; // Address of the object "Rectangle"
+    cout << "Address of Circle: " << shapes[1] << endl; // Address of the object "Circle
     cout << "Area of Rectangle: " <<shapes[0]->area() << endl; // Calling the overridden function from class Rectangle
     cout << "Area of Circle: " << shapes[1]->area() << endl; // Calling the overridden function from the class Circle
     shape.area(); // Calling the function from the class Shape
+
+    delete *shapes; // Deleting the objects from the heap
     return 0;
 }
